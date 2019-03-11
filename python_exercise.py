@@ -164,9 +164,33 @@ Then, the output should be:
 ('34', '67', '55', '33', '12', '98')
 '''
 #str1 = input("Please input your number:")
-def solution5():
+def solution4():
     str1 = input("Please input your number:")
     list1 = str1.split(',')
     print(list1)
     print(tuple(list1))
-#solution5()
+#solution4()
+
+'''
+Question 5
+Level 1
+
+Question:
+Define a class which has at least two methods:
+getString: to get a string from console input
+printString: to print the string in upper case.
+Also please include simple test function to test the class methods.
+'''
+class Question5():
+    def __init__(self,string = None):
+#        pass
+        self.string = string
+    def getString(self):
+        self.string = input("Please enter the string: ")
+    def printString(self):
+        print(self.string.upper())
+
+#q5 = Question5()
+#q5.getString()
+#q5.printString()
+        
