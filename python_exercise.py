@@ -135,7 +135,9 @@ Question 3
 Level 1
 
 Question:
-With a given integral number n, write a program to generate a dictionary that contains (i, i*i) such that is an integral number between 1 and n (both included). and then the program should print the dictionary.
+With a given integral number n, write a program to generate a dictionary that contains (i, i*i) 
+such that is an integral number between 1 and n (both included). and then the program 
+should print the dictionary.
 Suppose the following input is supplied to the program:
 8
 Then, the output should be:
@@ -193,4 +195,73 @@ class Question5():
 #q5 = Question5()
 #q5.getString()
 #q5.printString()
-        
+
+'''
+Question 6
+Level 2
+
+Question:
+Write a program that calculates and prints the value according to the given formula:
+Q = Square root of [(2 * C * D)/H]
+Following are the fixed values of C and H:
+C is 50. H is 30.
+D is the variable whose values should be input to your program in a comma-separated sequence.
+Example
+Let us assume the following comma separated input sequence is given to the program:
+100,150,180
+The output of the program should be:
+18,22,24
+'''
+import math
+def solution6(*numbers):  ##加一个*代表输入的这个参数数量是可变的
+    list2 = []
+#    input1 = input("Please enter the number you want to cal: ")
+#    list1 = input1.split(',')
+    for item in numbers:
+        Q = math.sqrt((2*50*item)/30)
+        list2.append(str(Q))
+    print(",".join(list2))
+#solution6(100,150,180)
+
+'''
+Question 7
+Level 2
+
+Question:
+Write a program which takes 2 digits, X,Y as input and generates a 2-dimensional array. The 
+element value in the i-th row and j-th column of the array should be i*j.
+Note: i=0,1.., X-1; j=0,1,¡­Y-1.
+Example
+Suppose the following inputs are given to the program:
+3,5
+Then, the output of the program should be:
+[[0, 0, 0, 0, 0], [0, 1, 2, 3, 4], [0, 2, 4, 6, 8]] 
+'''
+def solution7(x,y):
+    ret = [[] for i in range(x)] ##快速创造多个相同的list的办法
+    j = 0
+    for each_list in ret:
+        for k in range(y):
+            each_list.append(k*j)
+        j+= 1
+    return ret
+#print(solution7(3,5)) 
+
+'''
+Question 8
+Level 2
+
+Question:
+Write a program that accepts a comma separated sequence of words as input and prints 
+the words in a comma-separated sequence after sorting them alphabetically.
+Suppose the following input is supplied to the program:
+without,hello,bag,world
+Then, the output should be:
+bag,hello,without,world
+'''
+def solution8():
+    str1 = input("Please enter your words: ")
+    list1 = str1.split(',')
+    list1.sort()
+    print(','.join(list1))
+#solution8()
