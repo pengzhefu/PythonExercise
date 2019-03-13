@@ -265,3 +265,107 @@ def solution8():
     list1.sort()
     print(','.join(list1))
 #solution8()
+    
+'''
+Question 9
+Level 2
+
+Question
+Write a program that accepts sequence of lines as input and prints the lines after 
+making all characters in the sentence capitalized.
+Suppose the following input is supplied to the program:
+Hello world
+Practice makes perfect
+Then, the output should be:
+HELLO WORLD
+PRACTICE MAKES PERFECT
+'''
+def solution9_1():
+    end = False
+    ret = []
+    while not end:
+        str1 = input("Please enter your sentence: ")
+        if str1 == '':
+            end = True
+        else:
+            ret.append(str1)
+    for sentence in ret:
+        print(sentence.upper())
+
+#solution9_1()
+
+def solution9_2(*str1):
+    ret = []
+    for sentence in str1:
+        ret.append(sentence.upper())
+    return ret
+#print('\n'.join(solution9_2('abc','yui')))
+
+'''
+Question 10
+Level 2
+
+Question:
+Write a program that accepts a sequence of whitespace separated words 
+as input and prints the words after removing all duplicate words and sorting them alphanumerically.
+Suppose the following input is supplied to the program:
+hello world and practice makes perfect and hello world again
+Then, the output should be:
+again and hello makes perfect practice world
+'''
+def solution10_1():
+    str1 = input("Please enter your words: ")
+    list1 = str1.split(' ')
+#    list1.sort()
+    list2 = list1.reverse()
+    set1 = set(list1)
+    list2 = list(set1)
+    list2.sort()
+    return list2
+#print(' '.join(solution10_1()))
+
+def solution10_2(str1):
+    list1 = str1.split(' ')
+    set1 = set(list1)
+    list2 = list(set1)
+    list2.sort()
+    return list2
+#print(' '.join(solution10_2('hello world and practice makes perfect and hello world again')))
+
+'''
+Question 11
+Level 2
+
+Question:
+Write a program which accepts a sequence of comma separated 
+4 digit binary numbers as its input and then check whether they are divisible by 5 or not. The numbers 
+that are divisible by 5 are to be printed in a comma separated sequence.
+Example:
+0100,0011,1010,1001
+Then the output should be:
+1010
+Notes: Assume the data is input by console.
+'''
+def b2t(str1):  ##二进制转换成十进制
+    result = 0
+    i = len(str1) - 1
+    j=0
+    while i >= 0:
+        result += int(str1[i])*(2**j)
+        j += 1
+        i -= 1
+    return result
+## Python自带转换进制的函数，intp，用法为：intp(str1,x进制) 如：intp('0110',2)
+def solution11():
+    str1 = input("Please enter the number you want: ")
+    list1 = str1.split(',')
+    list2 = []
+    ret = []
+    for item in list1:
+        num = b2t(item)
+        list2.append(num)
+    for i in range(len(list2)):
+        if list2[i] % 5 == 0:
+            ret.append(list1[i])
+    print(','.join(ret))
+#solution11()
