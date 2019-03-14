@@ -369,3 +369,89 @@ def solution11():
             ret.append(list1[i])
     print(','.join(ret))
 #solution11()
+
+'''
+Question 12
+Level 2
+
+Question:
+Write a program, which will find all such numbers between 1000 and 
+3000 (both included) such that each digit of the number is an even number.
+The numbers obtained should be printed in a comma-separated sequence on a single line.
+'''
+def solution12(x,y):
+    ret = []
+    for i in range(x,y+1):
+        str1 = str(i)
+        even = True
+        for single in str1:
+            if int(single) % 2 != 0:
+                even = False
+        if even:
+            ret.append(str(i)) 
+    return ret
+#print(','.join(solution12(2000,3001)))
+
+'''
+Question 13
+Level 2
+
+Question:
+Write a program that accepts a sentence and calculate the number of letters and digits.
+Suppose the following input is supplied to the program:
+hello world! 123
+Then, the output should be:
+LETTERS 10
+DIGITS 3
+'''
+def solution13(str1):
+    num_l = 0
+    num_d = 0
+    for item in str1:
+        if item.isalpha():  ## isalpha()是判断一个字符串是否全为字母
+            num_l += 1      
+        if item.isdigit():  ## isdigit()是判断一个字符串是否全为数字
+            num_d += 1
+    print("LETTERS",num_l)
+    print("DIGITS", num_d)
+#solution13('hello world! 123')
+    
+'''
+Question 14
+Level 2
+
+Question:
+Write a program that accepts a sentence and calculate the number of upper 
+case letters and lower case letters.
+Suppose the following input is supplied to the program:
+Hello world!
+Then, the output should be:
+UPPER CASE 1
+LOWER CASE 9
+'''
+def solution14(str1):
+    num_u = 0
+    num_l = 0
+    for item in str1:
+        if item.isupper():  ## isalpha()是判断一个字符串是否全为字母
+            num_u += 1      
+        if item.islower():  ## isdigit()是判断一个字符串是否全为数字
+            num_l += 1
+    print("UPPER CASE",num_u)
+    print("LOWER CASE", num_l)
+#solution14('Hello world!')
+
+'''
+Question 15
+Level 2
+
+Question:
+Write a program that computes the value of a+aa+aaa+aaaa with a given digit as the value of a.
+Suppose the following input is supplied to the program:
+9
+Then, the output should be:
+11106
+'''
+def solution15(x):
+    return (x+11*x+111*x+1111*x)
+#print(solution15(9))
