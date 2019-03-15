@@ -213,7 +213,7 @@ The output of the program should be:
 18,22,24
 '''
 import math
-def solution6(*numbers):  ##加一个*代表输入的这个参数数量是可变的
+def solution6(*numbers):  ##加一个*代表输入的这个参数数量是可变的,多个输进去后变成tuple
     list2 = []
 #    input1 = input("Please enter the number you want to cal: ")
 #    list1 = input1.split(',')
@@ -455,3 +455,208 @@ Then, the output should be:
 def solution15(x):
     return (x+11*x+111*x+1111*x)
 #print(solution15(9))
+
+'''
+Question 16
+Level 2
+
+Question:
+Use a list comprehension to square each odd number in a list. 
+The list is input by a sequence of comma-separated numbers.
+Suppose the following input is supplied to the program:
+1,2,3,4,5,6,7,8,9
+Then, the output should be:
+1,3,5,7,9
+'''
+def solution16(*n):
+    ret = []
+    for num in n:
+        if num % 2 != 0:
+            ret.append(str(num))
+    return ret
+#print(','.join(solution16(1,2,3,4,5,6,7,8,9)))
+
+'''
+Question 17
+Level 2
+
+Question:
+Write a program that computes the net amount of a bank account based a 
+transaction log from console input. The transaction log format is shown as following:
+D 100
+W 200
+
+D means deposit while W means withdrawal.
+Suppose the following input is supplied to the program:
+D 300
+D 300
+W 200
+D 100
+Then, the output should be:
+500
+'''
+def solution17():
+    stop = False
+    result = 0
+    while not stop:
+        item = input()
+        if item != '':
+            opr = item.split(' ')[0]
+            num = int(item.split(' ')[1])
+            if opr == 'D':
+                result += num
+            if opr == 'W':
+                result -= num
+        else:
+            stop = True
+    return result
+#print(solution17())
+    
+'''
+Question 18
+Level 3
+
+Question:
+A website requires the users to input username and password to register. 
+Write a program to check the validity of password input by users.
+Following are the criteria for checking the password:
+1. At least 1 letter between [a-z]
+2. At least 1 number between [0-9]
+1. At least 1 letter between [A-Z]
+3. At least 1 character from [$#@]
+4. Minimum length of transaction password: 6
+5. Maximum length of transaction password: 12
+Your program should accept a sequence of comma separated passwords and will check 
+them according to the above criteria. Passwords that match the criteria are to be printed, 
+each separated by a comma.
+Example
+If the following passwords are given as input to the program:
+ABd1234@1,a F1#,2w3E*,2We3345
+Then, the output of the program should be:
+ABd1234@1
+'''
+import re
+#phone = '123a#s@-456-7890'
+#infos = re.findall('[$#@]',phone)
+##print(infos == [])
+def solution18(*str1):
+    ret = []
+    for pw in str1:
+        if len(pw) < 6 or len(pw) > 12:
+            continue
+        else:
+            if re.findall('[#$@]',pw) != [] and re.findall('[a-z]',pw) != [] and re.findall('[0-9]',pw) != []\
+                    and re.findall('[A-Z]',pw) != []:
+                        ret.append(pw)
+                
+            
+    return ret
+#print(','.join(solution18('ABd1234@1','a F1#','2w3E*','2We3345')))
+    
+'''
+Question 19
+Level 3
+
+Question:
+You are required to write a program to sort the (name, age, height) tuples by ascending order 
+where name is string, age and height are numbers. The tuples are input by console. The sort criteria is:
+1: Sort based on name;
+2: Then sort based on age;
+3: Then sort by score.
+The priority is that name > age > score.
+If the following tuples are given as input to the program:
+Tom,19,80
+John,20,90
+Jony,17,91
+Jony,17,93
+Json,21,85
+Then, the output of the program should be:
+[('John', '20', '90'), ('Jony', '17', '91'), ('Jony', '17', '93'), ('Json', '21', '85'), ('Tom', '19', '80')]
+'''
+## 这道题重点在于利用sorted或者sort函数可以多个属性进行排序的自带功能
+#L = [('12', '12'), ('34', '13'), ('32', '15'), ('12', '24'), ('32', '64'), ('32', '11')]
+#L.sort(key=lambda x: (x[0], -int(x[1])))  ##这里的x就是指的要排序的整个东西自己,加个负号是说这个要倒序
+#print(L)
+def solution19(*tuples):
+    list1 = list(tuples)
+    list1.sort(key = lambda x: (x[0],int(x[1]),int(x[2])))  ##这个是有优先级的，在最前面的优先级最高这样子，交换顺序
+                                                                ##就能交换优先级
+    return list1
+#print(solution19(('Tom', '19', '80'),('John', '20', '90'),('Jony', '17', '91'),('Json', '21', '85'),\
+#                 ('Jony', '17', '93')))
+    
+'''
+Question 20
+Level 3
+
+Question:
+Define a class with a generator which can iterate the numbers, which are divisible by 7, 
+between a given range 0 and n.
+'''
+##这道题的关键是搞懂generator
+## generator（生成器）本身也是可以迭代的，yield就是一个生成器
+def putNumbers(n):
+    i = 0
+    while i<n:
+        j=i
+        i=i+1
+        if j%7==0:
+            yield j
+
+#for i in putNumbers(100):   ## putNumbers是一个generator，用来节省内存的，自带next属性，就可以进行迭代了
+#    print(i)
+
+'''
+Question 21
+Level 3
+
+Question£º
+A robot moves in a plane starting from the original point (0,0). The robot can move toward UP, 
+DOWN, LEFT and RIGHT with a given steps. The trace of robot movement is shown as the following:
+UP 5
+DOWN 3
+LEFT 3
+RIGHT 2
+¡­
+The numbers after the direction are steps. Please write a program to 
+compute the distance from current position after a sequence of movement and original point. 
+If the distance is a float, then just print the nearest integer.
+Example:
+If the following tuples are given as input to the program:
+UP 5
+DOWN 3
+LEFT 3
+RIGHT 2
+Then, the output of the program should be:
+2
+'''
+#import math
+def solution21():
+    stop = False
+    x = 0
+    y = 0
+    while not stop:
+        str1 = input()
+        if str1 == '':
+            stop = True
+        else:
+            dirt = str1.split(' ')[0]
+            num = int(str1.split(' ')[1])
+            if dirt == 'UP':
+                x += num
+            elif dirt == 'DOWN':
+                x -= num
+            elif dirt == 'LEFT':
+                y -= num
+            else:
+                y += num
+    dist = math.sqrt(abs(x)**2+abs(y)**2)
+    ## 下面这一步可以用round替代
+    dist_int = int(dist)
+    if dist - dist_int >=0.5:
+        return dist_int + 1
+    else:
+        return dist_int
+   
+#print(solution21())
+#print(round(3.92123))
