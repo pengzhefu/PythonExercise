@@ -536,9 +536,9 @@ Then, the output of the program should be:
 ABd1234@1
 '''
 import re
-#phone = '123a#s@-456-7890'
-#infos = re.findall('[$#@]',phone)
-##print(infos == [])
+phone = '123a#s@-456-7890'
+infos = re.findall('',phone)   ## findall返回的是一个列表
+#print(infos == [])
 def solution18(*str1):
     ret = []
     for pw in str1:
@@ -660,3 +660,140 @@ def solution21():
    
 #print(solution21())
 #print(round(3.92123))
+'''
+Question 22
+Level 3
+
+Question:
+Write a program to compute the frequency of the words from the input. 
+The output should output after sorting the key alphanumerically. 
+Suppose the following input is supplied to the program:
+New to Python or choosing between Python 2 and Python 3? Read Python 2 or Python 3.
+Then, the output should be:
+2:2
+3.:1
+3?:1
+New:1
+Python:5
+Read:1
+and:1
+between:1
+choosing:1
+or:2
+to:1
+'''
+def solution22(str1):
+    ret = {}
+    list1 = str1.split(' ')
+    for item in list1:
+        if item not in ret.keys():
+            ret[item] = 1
+        else:
+            ret[item] = ret[item] + 1
+#    print(ret)
+#    return ret
+    for k,v in ret.items():  ## 针对字典同时获取key和value的方法
+        print('{0}:{1}'.format(k,v))   ## print指定内容的打印方法
+#    for k,v in ret:
+#        print(k)
+#a = solution22('New to Python or choosing between Python 2 and Python 3? Read Python 2 or Python 3.')
+        
+'''
+Question 23
+level 1
+
+Question:
+    Write a method which can calculate square value of number
+'''
+
+def solution23(x):
+    return x*x
+#print(solution23(23))
+
+'''
+Question 24
+Level 1
+
+Question:
+    Python has many built-in functions, and if you do not know how to use it, 
+    you can read document online or find some books. But Python has a built-in document 
+    function for every built-in functions.
+    Please write a program to print some Python built-in functions documents, 
+    such as abs(), int(), raw_input()
+And add document for your own function
+'''
+def solution24(x):
+    print(x.__doc__)
+
+#solution24(abs)
+
+'''
+Question 25
+Level 1
+
+Question:
+    Define a class, which have a class parameter and have a same instance parameter.
+
+Hints:
+    Define a instance parameter, need add it in __init__ method
+You can init a object with construct parameter or set the value later
+'''
+#class Person():
+#    # Define the class parameter "name"
+#    name = "Person"
+#    
+#    def __init__(self, name = None):
+#        # self.name is the instance parameter
+#        self.name = name
+#
+#jeffrey = Person("Jeffrey")
+#print("%s name is %s" % (Person.name, jeffrey.name))
+#
+#nico = Person()
+#nico.name = "Nico"
+#print("%s name is %s" % (Person.name, nico.name))
+
+'''
+Question26:
+Define a function which can print a dictionary where the keys are numbers 
+between 1 and 3 (both included) and the values are square of keys.
+'''
+def solution26():
+    ret = {}
+    for i in range(1,4):
+        ret[i] = i**2
+    for k,v in ret.items():
+        print('{}:{}'.format(k,v))
+#solution26()
+
+'''
+Question27:
+Define a function which can generate and print a list where the values are square of 
+numbers between 1 and 20 (both included).
+'''
+def solution27(x,y):
+    return [i*i for i in range(x,y+1)]
+#print(solution27(1,20))
+    
+'''
+Question28:
+Write a program which can map() to make a list whose elements are 
+square of elements in [1,2,3,4,5,6,7,8,9,10].
+'''
+#li = [1,2,3,4,5,6,7,8,9,10]
+#squaredNumbers = map(lambda x: x**2, li)  ## Python3的map返回的是迭代器
+#for i in squaredNumbers:
+#    print(i)
+
+'''
+Question29:
+Write a program which can map() and filter() to make a list whose elements are square of 
+even number in [1,2,3,4,5,6,7,8,9,10].
+'''
+def solution29(list1):
+    res = []
+    ret = map(lambda x: x**2,filter(lambda x: x%2==0, list1))
+    for i in ret:
+        res.append(i)
+    return res
+#print(solution29([1,2,3,4,5,6,7,8,9,10]))
